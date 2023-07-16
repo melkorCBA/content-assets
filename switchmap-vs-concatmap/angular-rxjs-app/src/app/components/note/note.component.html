@@ -1,0 +1,11 @@
+<h1>Note</h1>
+<div>
+  <h2>Saved note</h2>
+  <p>{{ savedNote }}</p>
+</div>
+
+<div>
+  <h2>Note editor</h2>
+  <textarea cols="30" rows="10" [(ngModel)]="note"></textarea>
+  <div><button id="save-btn" (click)="onSave()">Save</button></div>
+</div>
