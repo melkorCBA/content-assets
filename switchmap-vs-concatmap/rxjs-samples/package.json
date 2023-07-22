@@ -1,0 +1,20 @@
+{
+  "name": "rxjs-samples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "file": "tsc & sh -c 'file=$0; node \"dist/$file.js\";'",
+    "test": "npm run -s file test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  }
+}
