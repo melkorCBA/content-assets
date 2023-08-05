@@ -1,23 +1,25 @@
-const { of, timer } = Rx;
+const { of, timer, from } = Rx;
 const { delay, take, map, concatMap, switchMap } = RxOperators;
 
 const mapFunc = (item) => (item % 2 === 0 ? `${item} e` : `${item} o`);
 const isOdd = (item) => of(mapFunc(item)).pipe(delay(1000));
 
 // 1. values emited ervey 0.5 seconds
-timer(0, 500).pipe(
-  map((v) => v + 1),
-  take(5)
+const bgTimer$ = timer(0, 500).pipe(
+  map((v) => `${v / 2}s`),
+  take(13)
 );
 // 2. concatMap with 1 second delay for inner Observables
-timer(0, 500).pipe(
+const cmap$ = timer(0, 500).pipe(
   map((v) => v + 1),
   take(5),
   concatMap(isOdd)
 );
 // 3. switchMap with 1 second delay for inner Observables
-timer(0, 500).pipe(
+const smap$ = timer(0, 500).pipe(
   map((v) => v + 1),
   take(5),
   switchMap(isOdd)
 );
+
+from([bgTimer$, smap$, cmap$]);
